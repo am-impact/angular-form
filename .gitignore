@@ -1,0 +1,20 @@
+# Sass
+.sass-cache
+# .map
+
+# Other files
+.DS_Store
+Thumbs.db
+
+# Grunt
+htdocs/Gruntfile.js
+htdocs/package.json
+htdocs/node_modules
+htdocs/resources/css/
+htdocs/resources/scripts/
+htdocs/resources/sprites/
+
+npm-debug.log
+
+# Compiled css, ivm conflicten door meerdere ontwikkelaars aan html
+# /html/content/compiled/*al
