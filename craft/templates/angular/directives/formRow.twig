@@ -1,0 +1,21 @@
+{% set submap = craft.config.environmentVariables['submap'] %}
+
+<li class="form__row" ng-form="[[ field ]]" ng-switch="type">
+	<!-- ng-form wordt hier gebruikt om de directive op zichzelf valideerbaar te maken -->
+	<div ng-switch-when="radio"><ng-include src="'{{ submap }}angular/directives/types/radio'"></ng-include></div>
+	<div ng-switch-when="select"><ng-include src="'{{ submap }}angular/directives/types/select'"></ng-include></div>
+	<div ng-switch-when="date"><ng-include src="'{{ submap }}angular/directives/types/date'"></ng-include></div>
+	<div ng-switch-default><ng-include src="'{{ submap }}angular/directives/types/default'"></ng-include></div>
+
+	<div class="form__rowmessage" ng-if="this[field][field].$dirty" ng-messages="this[field][field].$error">
+		<div ng-message="required">'[[ label ]]' is verplicht</div>
+		<div ng-message="email">'[[ label ]]' is geen geldig emailadres</div>
+		<div ng-message="number">'[[ label ]]' is geen geldig nummer</div>
+		<div ng-message="date">'[[ label ]]' is geen geldige datum</div>
+		<div ng-message="datetime">'[[ label ]]' is geen geldige datum/tijd</div>
+		<div ng-message="url">'[[ label ]]' is geen geldige url</div>
+		<div ng-message="tel">'[[ label ]]' is geen geldig telefoonnummer</div>
+		<div ng-message="nomatch">'[[ label ]]' komt niet overeen</div>
+		<div ng-message="maxlength">'[[ label ]]' is te lang</div>
+	</div>
+</li>

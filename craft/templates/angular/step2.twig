@@ -1,0 +1,12 @@
+<ul>
+    <li>
+        <div class="label"><label for="frm-angular-bestand">Bestand</label></div>
+        <div class="field">
+            <input type="file" name="file" id="frm-angular-bestand" ngf-select ng-model="picFile" accept="image/*" ngf-max-size="2MB" required>
+            <i ng-show="formData.file.$error.maxSize">File too large [[picFile.size / 1000000|number:1]]MB: max [[picFile.$errorParam]]</i>
+            <img ng-show="formData.file.$valid" ngf-src="!picFile.$error && picFile"class="thumb">
+        </div>
+    </li>
+</ul>
+
+<a ui-sref="form.step3" class="button">Volgende stap</a>

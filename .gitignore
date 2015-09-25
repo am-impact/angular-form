@@ -1,3 +1,6 @@
+# Craft
+craft/templates/index.twig
+
 # Sass
 .sass-cache
 # .map
@@ -12,7 +15,7 @@ htdocs/package.json
 htdocs/node_modules
 htdocs/resources/css/
 htdocs/resources/scripts/
-htdocs/resources/sprites/
+htdocs/resources/src/scss/
 
 npm-debug.log
 
