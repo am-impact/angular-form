@@ -1,9 +1,6 @@
 angular.module('formControllers', [])
 
 .controller('FormCtrl', ['$scope', '$state', 'FormService', 'Upload', '$timeout', function ($scope, $state, FormService, Upload, $timeout) {
-	var filesObj = {},
-		fieldsObj = {};
-
 	/* Wordt gebruikt voor de loader bij submitten */
 	$scope.sendForm = false;
 
