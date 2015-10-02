@@ -1,4 +1,4 @@
-<div class="field" ng-switch="required" ng-class="{ 'field--invalid' : this[field][field].$dirty && this[field][field].$invalid, 'field--valid': this[field][field].$dirty && this[field][field].$valid }">
+<div ng-switch="required" ng-class="{ 'field--invalid' : this[field][field].$dirty && this[field][field].$invalid, 'field--valid': this[field][field].$dirty && this[field][field].$valid }">
 	<textarea ng-switch-when="true" name="[[ nameprefix ]][[ field ]]" id="frm-[[ nameprefix ]][[ field ]]" ng-model="record[ field ]" required></textarea>
 	<textarea ng-switch-default  name="[[ nameprefix ]][[ field ]]" id="frm-[[ nameprefix ]][[ field ]]" ng-model="record[ field ]" ></textarea>
 </div>

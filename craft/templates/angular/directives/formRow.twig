@@ -1,17 +1,18 @@
 {% set submap = craft.config.environmentVariables['submap'] %}
 
-<li class="form__row" ng-form="[[ field ]]" ng-switch="type">
+<!-- ng-form wordt hier gebruikt om de directive op zichzelf valideerbaar te maken -->
+<li class="form__row" ng-form="[[ field ]]">
 	<div class="label">
 		<label ng-if="label" ng-class="{ 'required' : required == 'true' }" for="frm-[[ nameprefix ]][[ field ]]">[[ label ]]</label>
 		<em ng-if="sublabel">[[ sublabel ]]</em>
 	</div>
-
-	<!-- ng-form wordt hier gebruikt om de directive op zichzelf valideerbaar te maken -->
-	<div ng-switch-when="radio"><ng-include src="'{{ submap }}angular/directives/types/radio'"></ng-include></div>
-	<div ng-switch-when="select"><ng-include src="'{{ submap }}angular/directives/types/select'"></ng-include></div>
-	<div ng-switch-when="file"><ng-include src="'{{ submap }}angular/directives/types/file'"></ng-include></div>
-	<div ng-switch-when="textarea"><ng-include src="'{{ submap }}angular/directives/types/textarea'"></ng-include></div>
-	<div ng-switch-default><ng-include src="'{{ submap }}angular/directives/types/default'"></ng-include></div>
+	<div class="field" ng-switch="type">
+		<div ng-switch-when="radio"><ng-include src="'{{ submap }}angular/directives/types/radio'"></ng-include></div>
+		<div ng-switch-when="select"><ng-include src="'{{ submap }}angular/directives/types/select'"></ng-include></div>
+		<div ng-switch-when="file"><ng-include src="'{{ submap }}angular/directives/types/file'"></ng-include></div>
+		<div ng-switch-when="textarea"><ng-include src="'{{ submap }}angular/directives/types/textarea'"></ng-include></div>
+		<div ng-switch-default><ng-include src="'{{ submap }}angular/directives/types/default'"></ng-include></div>
+	</div>
 
 	<div class="form__rowmessage" ng-if="this[field][field].$dirty" ng-messages="this[field][field].$error">
 		<div ng-message="required">'[[ label ]]' is verplicht</div>

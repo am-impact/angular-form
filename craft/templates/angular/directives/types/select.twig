@@ -1,4 +1,4 @@
-<div class="field" ng-switch="required" ng-class="{ 'field--invalid' : this[field][field].$dirty && this[field][field].$invalid, 'field--valid': this[field][field].$dirty && this[field][field].$valid }">
+<div ng-switch="required" ng-class="{ 'field--invalid' : this[field][field].$dirty && this[field][field].$invalid, 'field--valid': this[field][field].$dirty && this[field][field].$valid }">
 	<select ng-switch-when="true" name="[[ nameprefix ]][[ field ]]" id="frm-[[ nameprefix ]][[ field ]]" ng-model="record[ field ]" required="true">
 		<option ng-repeat="(optionValue, optionLabel) in options" value="[[ optionValue ]]" ng-selected="optionValue == record[ field ]">[[ optionLabel ]]</option>
 	</select>

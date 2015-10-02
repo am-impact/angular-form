@@ -12,6 +12,8 @@ angular.module('formApp', [
 	$interpolateProvider.startSymbol('[[');
 	$interpolateProvider.endSymbol(']]');
 
+	$urlRouterProvider.when('/form', '/form/step1');
+
 	$stateProvider
 		// route to show our basic form (/form)
 		.state('form', {

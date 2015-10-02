@@ -1,4 +1,4 @@
-<div class="field" ng-switch="required" ng-class="{ 'field--invalid' : this[field][field].$dirty && this[field][field].$invalid, 'field--valid': this[field][field].$dirty && this[field][field].$valid }">
+<div ng-switch="required" ng-class="{ 'field--invalid' : this[field][field].$dirty && this[field][field].$invalid, 'field--valid': this[field][field].$dirty && this[field][field].$valid }">
 	<input ng-switch-when="true" type="[[ type ]]" name="[[ nameprefix ]][[ field ]]" id="frm-[[ nameprefix ]][[ field ]]" ng-model="record[ field ]" required>
 	<input ng-switch-default type="[[ type ]]" name="[[ nameprefix ]][[ field ]]" id="frm-[[ nameprefix ]][[ field ]]" ng-model="record[ field ]" >
 </div>

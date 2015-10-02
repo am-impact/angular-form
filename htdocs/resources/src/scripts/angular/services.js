@@ -11,6 +11,9 @@ angular.module('formServices', [])
 			for( item in dataObj ) {
 				data[item] = dataObj[item];
 			}
+		},
+		empty: function() {
+			data = {};
 		}
 	}
 });
