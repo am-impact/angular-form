@@ -1,10 +1,8 @@
-<div class="text-center">
-    <a ui-sref-active="active" ui-sref=".step1"><span>1</span> Step 1</a>
-    <a ui-sref-active="active" ui-sref=".step2"><span>2</span> Step 2</a>
-    <a ui-sref-active="active" ui-sref=".step3"><span>3</span> Step 3</a>
-</div>
+{% set submap = craft.config.environmentVariables['submap'] %}
 
-<form class="frm-angular" enctype="multipart/form-data" name="formData" ng-submit="processForm()" novalidate>
+<form-steps></form-steps>
+
+<form class="frm-angular" enctype="multipart/form-data" name="formData" ng-submit="submit($event)" novalidate>
     <input type="hidden" ng-model="actionUrl" ng-init="actionUrl='{{ actionUrl('amForms/submissions/saveSubmissionByAngular') }}'">
     <input type="hidden" name="handle" value="angular">
     {{ getCsrfInput() }}
@@ -14,8 +12,11 @@
         <legend>Formulier</legend>
         <div id="form-views" ui-view></div>
     </fieldset>
-</form>
 
-<pre>
-    [[ formData ]]
-</pre>
+	{# Serverside errors #}
+	<div class="errors" ng-if="serverSideErrors" ng-repeat="error in serverSideErrors">
+		<li>[[ error[0] ]]</li>
+	</div>
+
+    <div class="loader" style="background: #000;" ng-if="sendForm"><img src="{{ submap }}resources/img/loader.svg"></div>
+</form>

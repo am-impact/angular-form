@@ -4,55 +4,40 @@ angular.module('global.directives', [])
 	return {
 		restrict: 'EA',
 		templateUrl: FW.Config.submap + 'angular/directives/formRow',
-		replace: true,
+		replace: false,
 		scope: {
 			record: '=',
 			recordname: '@',
 			type: '@',
 			field: '@',
-			label: '@',
 			nameprefix: '@',
+			label: '@',
 			options: '=',
 			sublabel: '@',
 			required: '@',
-			getSchoolByBrinNummer: '&',
-			getLeerlingByBsnNummer: '&',
-			dtopen: '='
+			maxfilesize: '@',
+			filetypes: '@',
+			multiple: '@'
 		},
-		link: function($scope, $rootScope, element, attr) {
+		link: function($scope, element, attr) {
 			// Wordt gezet bij form submit
 			$scope.$on('record:invalid', function() {
-				console.log( $scope.field );
-
 				if( $scope[$scope.field][$scope.field] ) {
 					$scope[$scope.field][$scope.field].$setDirty();
 				}
 			});
 
-			/**
-			 * No match (bijv: password nog een keer invoeren)
-			 */
-			$scope.$on('record:nomatch', function(self,field) {
-				if( field === $scope.field ) {
-					$scope[$scope.field][$scope.field].$setValidity("nomatch", false);
-				}
-			});
-
-			/**
-			 * Match (bijv: password matcht)
-			 */
-			$scope.$on('record:match', function(self,field) {
-				if( field === $scope.field ) {
-					$scope[$scope.field][$scope.field].$setValidity("nomatch", true);
-				}
-			});
-
-			/**
-			 * Date field
-			 */
-			$scope.openDatepicker = $scope.$root.openDatepicker;
+			$scope.defaultFileTypes = 'image/*,application/pdf,application/msword';
+			$scope.defaultFileSize = '5MB'
 		}
 	}
+})
+
+.directive('formSteps', function() {
+    return {
+        restrict: 'E',
+        templateUrl: FW.Config.submap + 'angular/directives/steps'
+    }
 })
 
 /**
@@ -95,36 +80,4 @@ angular.module('global.directives', [])
             });
         }
     };
-}])
-
-
-/**
- * Datepicker clean date format
- */
-.directive('datepickerPopup', function (){
-    return {
-        restrict: 'EAC',
-        require: 'ngModel',
-        link: function(scope, element, attr, controller) {
-      		controller.$formatters.shift();
-  		}
-	}
-})
-
-
-/**
- * Enter key event
- */
-.directive('ngEnter', function() {
-    return function(scope, element, attrs) {
-        element.bind("keydown keypress", function(event) {
-            if(event.which === 13) {
-                scope.$apply(function(){
-                        scope.$eval(attrs.ngEnter);
-                });
-
-                event.preventDefault();
-            }
-        });
-    };
-});
+}]);
