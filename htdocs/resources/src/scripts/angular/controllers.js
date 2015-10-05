@@ -26,23 +26,31 @@ angular.module('formControllers', [])
 	 */
 	function splitFilesData( dataObj ) {
 		var filesObj = {},
-			fieldsObj = {};
+			fieldsObj = {
+				filesNames: {}
+			};
 
 		for( key in dataObj ) {
-			if(
-				/* Check of het een bestand is */
-				(typeof dataObj[ key ] === 'object' &&
+			/* Check of het een bestand is */
+			if(typeof dataObj[ key ] === 'object' &&
 				typeof dataObj[ key ].name === 'string' &&
-				typeof dataObj[ key ].size === 'number')
-				||
-				/* Bij multiple files, is het een array, dan ff checken op het eerste item */
-				( angular.isArray( dataObj[ key ] ) &&
+				typeof dataObj[ key ].size === 'number'
+			) {
+				filesObj[key] = dataObj[ key ];
+			}
+			/* Bij multiple files, is het een array, dan ff checken op het eerste item */
+			else if( angular.isArray( dataObj[ key ] ) &&
 				dataObj[ key ].length > 0 &&
 				typeof dataObj[ key ][0] === 'object' &&
 				typeof dataObj[ key ][0].name === 'string' &&
-				typeof dataObj[ key ][0].size === 'number')
+				typeof dataObj[ key ][0].size === 'number'
 			) {
-
+				for( subkey in dataObj[key] ) {
+					if (typeof fieldsObj['filesNames'][ key ] == 'undefined') {
+						fieldsObj['filesNames'][key] = [];
+					}
+					fieldsObj['filesNames'][ key ].push(dataObj[key][subkey].name);
+				}
 				filesObj[key] = dataObj[ key ];
 			}
 			/* Anders is het een 'gewoon' veld (geen file) */
